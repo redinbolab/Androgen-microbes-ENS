@@ -1,9 +1,9 @@
 ########################################################################################
-### MixOmics sPLS-DA - Endobiotics Cohort Meta-Omic Profiles Cluster by Inhibition
+### MixOmics sPLS-DA - Androgen-microbes-ENS GUS Gene Intensity
 ########################################################################################
 
 ##### Usage
-# Rscript mixomics_sPLS-DA_iter_export_v3.r
+# Rscript mixomics_sPLS-DA_andro_export.r
 
 ##### prep environment
 ### if auto install fails:
@@ -14,9 +14,8 @@
 # suppressMessages(library(stringr))
 
 ### auto install
-# Clean workspace 
-rm(list=ls())
 
+rm(list=ls()) # Clean workspace 
 options(repos = "https://cloud.r-project.org") # Set the mirror
 
 # Define required packages
@@ -28,18 +27,15 @@ not_installed <- setdiff(required_packages, installed)
 
 # Install missing packages
 if(length(not_installed) > 0) {
-  
   if('mixOmics' %in% not_installed){ # install mixOmics
-  # install BiocManager if not installed
+    # install BiocManager if not installed
     if (!requireNamespace("BiocManager", quietly = TRUE))
         install.packages("BiocManager")
     BiocManager::valid()
     BiocManager::install('mixOmics')
-
   installed <- installed.packages()[,"Package"]
   not_installed <- setdiff(required_packages, installed)
   install.packages(not_installed, dependencies = TRUE)
-
   }
 }
 
@@ -62,7 +58,6 @@ for (i in seq_along(required_packages)) {
 ##### main
 ########################################################################################
 
-
 ################################################################################
 # mixomics example
 # data(srbct) # extract the small round bull cell tumour data
@@ -78,14 +73,11 @@ for (i in seq_along(required_packages)) {
 # plotVar(result.plsda.srbct) # plot the variables 
 ################################################################################
 
-
 # set paths
 in_csv <- "andro_hms_rep_summary_ALL_tax_GUS_full70.csv"
 outdir <- "./andro_MGX_full_md_ALL_GUS_genes/"
 
-
 md_df <- read.csv(in_csv,check.names=FALSE) # read data
-
 
 row_size <- .47 # set rowsize
 marginVector <- c(7, 10) # set margin vector
