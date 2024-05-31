@@ -94,7 +94,7 @@ if (!dir.exists(outdir)){
   dir.create(outdir)
 }
 
-md_df <- md_df %>% arrange(str_to_lower(!!sym(md_col))) # arrange df based on alphabetical order of md entries in md col (important for labeling)
+md_df <- md_df %>% arrange(str_to_lower(!!sym(md_col))) # arrange df based on alphabetical order of entries in md col (important for labeling)
 
 X <- md_df[, split_column_index:ncol(md_df)] # use split_column to get X matrix
 Y <- factor(md_df[[md_col]]) # use the class data as the Y matrix
@@ -104,7 +104,7 @@ pdf(paste0(outdir,md_col,".pdf")) # specify ofnm and open pdf
 result.splsda <- splsda(X, Y)
 
 ### CIM
-# set the styling of the legend to be homogeneous with previous plots
+# set the styling of the legend
 legend=list(legend = levels(Y), # set of classes
             col = unique(color.mixo(Y)), # set of colours
             title = md_col, # legend title
