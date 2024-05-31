@@ -103,8 +103,6 @@ pdf(paste0(outdir,md_col,".pdf")) # specify ofnm and open pdf
 # run method - PLS-DA
 result.splsda <- splsda(X, Y)
 
-N <- 2
-
 ### CIM
 # set the styling of the legend to be homogeneous with previous plots
 legend=list(legend = levels(Y), # set of classes
